@@ -1,0 +1,21 @@
+{
+  "name": "signal-standalone",
+  "version": "1.0.0",
+  "description": "Converts Signal chrome extension into a cross-platform standalone app with nw.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Biester",
+  "license": "MIT",
+  "dependencies": {
+    "del": "^2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-cli": "^1.2.2",
+    "gulp-shell": "^0.6.3",
+    "nw-builder": "^3.2.0"
+  },
+  "devDependencies": {
+  }
+}
