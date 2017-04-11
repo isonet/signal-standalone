@@ -16,11 +16,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - build/dist/linux32-*.zip
-    - build/dist/linux64-*.zip
-    - build/dist/osx64-*.zip
-    - build/dist/win32-*.zip
-    - build/dist/win64-*.zip
+    - build/dist/zip/*
   api_key:
     secure: KGJxlsQJWcJETSy2hBjwVbvbRwEKm2obqNXfj5NHWE4LbEqvJK6SQvgCCyKaIWM5xSq1K4vkEQgaISlUS0zR07vqZ7Kxrt41E7ANyuBakYuBNnJGBKB4nLpsecoGxXyuN/xWJ7E5BtrP1W/fVX31gAvsSBejEuznGZVVZ1/+AZ0bgnalb5Rr+sQ4jcvXs0S2Um8vtVaeSjOx7oeN4xSl8R0qlpTBhHXMFp30Pl878xvD1PnJxvewf8p1fDf3rXUgqp7ylYsURNstK09ELXEhCFm3ulvRivSYvKT/2RLHO2bVspAlCnTFsg0eVOoZM8/hJ1AU8LCfXfTyIE0RewBUHCDgXULfKwYJcfZnb8eV7ekvD3oGYCbVLbgAkphsAL80RwEvFkXw/OgQUxl9fHTwCEe02ElWQJE7VJsKd6uHP0fgpdUk8TTCl8HP9xY+6MJBUEjVh4cf4xriLRE0dpPhO//AoAjnRyJ/86p+fzkvhk88Zdbiiy3cIVPb6EiaL9uUlmXswrdTa3RlcM3X7ElAISehidMKGZYopPsTofBOMzqhMw4JB6AA+kes13eLX7Vtu7k7teoKEEm0frDpy5z5dc/q5ABJ2WvlEWoERO7zD/sHkUX6UvtEISB9wH54r8kx3//oD7kkSISEZu3E7UoRLqpsILt1Wh1v6D+lX6Io914=
   file: a
