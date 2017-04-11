@@ -50,14 +50,17 @@ gulp.task('build-nw', (done) => {
     });
 });
 
-gulp.task('build-release', (done) => {
-    gulp.src(`./build/dist/signal-standalone-${currentVersion}/linux32/**/**`).pipe(zip(`linux32-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/'));
-    gulp.src(`./build/dist/signal-standalone-${currentVersion}/linux64/**/**`).pipe(zip(`linux64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/'));
-    gulp.src(`./build/dist/signal-standalone-${currentVersion}/osx64/**/**`).pipe(zip(`osx64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/'));
-    gulp.src(`./build/dist/signal-standalone-${currentVersion}/win32/**/**`).pipe(zip(`win32-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/'));
-    gulp.src(`./build/dist/signal-standalone-${currentVersion}/win64/**/**`).pipe(zip(`win64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/'));
-    done();
-});
+gulp.task('build-release-linux32', () => gulp.src(`./build/dist/signal-standalone-${currentVersion}/linux32/**/**`).pipe(zip(`linux32-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/')));
+
+gulp.task('build-release-linux64', () => gulp.src(`./build/dist/signal-standalone-${currentVersion}/linux64/**/**`).pipe(zip(`linux64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/')));
+
+gulp.task('build-release-osx64', () => gulp.src(`./build/dist/signal-standalone-${currentVersion}/osx64/**/**`).pipe(zip(`osx64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/')));
+
+gulp.task('build-release-win32', () => gulp.src(`./build/dist/signal-standalone-${currentVersion}/win32/**/**`).pipe(zip(`win32-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/')));
+
+gulp.task('build-release-win64', () => gulp.src(`./build/dist/signal-standalone-${currentVersion}/win64/**/**`).pipe(zip(`win64-${currentVersion}.zip`)).pipe(gulp.dest('./build/dist/')));
+
+gulp.task('build-release', gulp.parallel('build-release-linux32', 'build-release-linux64', 'build-release-osx64', 'build-release-win32', 'build-release-win64'));
 
 
 gulp.task('default', gulp.series('clean', 'init', 'clone-signal', 'checkout-signal-latest', 'build-signal', 'build-nw', 'build-release'));
