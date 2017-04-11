@@ -12,7 +12,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   file_glob: true
-    file:
+  file:
     - build/dist/linux32-*.zip
     - build/dist/linux64-*.zip
     - build/dist/osx64-*.zip
