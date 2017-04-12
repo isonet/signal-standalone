@@ -2,14 +2,11 @@ language: node_js
 node_js:
 - node
 sudo: required
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
 before_install:
 - sudo apt-get -qq update
-- sudo apt-get install -y libgemplugin-ruby wine wine-mono*
+- sudo apt-get install -y libgemplugin-ruby wine
 - sudo gem install sass
+- winetricks mono28
 script:
 - npm start
 cache:
