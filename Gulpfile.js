@@ -6,7 +6,6 @@ const exec = require('child_process').exec;
 const zip = require('gulp-zip');
 const ghRelease = require('gh-release');
 const icongen = require('icon-gen');
-const rename = require("gulp-rename");
 const Jimp = require("jimp");
 
 let currentVersion;
