@@ -3,6 +3,7 @@ node_js:
 - node
 sudo: required
 before_install:
+- "export WINEARCH=win32"
 - sudo apt-get -qq update
 - sudo apt-get install -y libgemplugin-ruby wine
 - sudo gem install sass
