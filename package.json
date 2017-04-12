@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "del": "^2.2.2",
+    "gh-release": "^2.2.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cli": "^1.2.2",
     "gulp-shell": "^0.6.3",

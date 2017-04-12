@@ -4,6 +4,8 @@ const NwBuilder = require('nw-builder');
 const del = require('del');
 const exec = require('child_process').exec;
 const zip = require('gulp-zip');
+const ghRelease = require('gh-release');
+const resolve = require('path').resolve;
 
 let currentVersion;
 
@@ -62,5 +64,41 @@ gulp.task('build-release-win64', () => gulp.src(`./build/dist/signal-standalone-
 
 gulp.task('build-release', gulp.parallel('build-release-linux32', 'build-release-linux64', 'build-release-osx64', 'build-release-win32', 'build-release-win64'));
 
+gulp.task('push-release', (done) => {
+    if (typeof process.env.GITHUB_OAUTH_TOKEN === 'string' && process.env.GITHUB_OAUTH_TOKEN.length > 0) {
+        const options = {
+            tag_name: currentVersion.toString(),
+            target_commitish: 'master',
+            name: `signal-standalone-${currentVersion}`,
+            body: `signal-standalone-${currentVersion}`,
+            draft: false,
+            prerelease: false,
+            repo: 'signal-standalone',
+            owner: 'isonet',
+            endpoint: 'https://api.github.com',
+            auth: {
+                token: process.env.GITHUB_OAUTH_TOKEN
+            },
+            workpath: process.cwd(),
+            assets: [
+                `build/dist/zip/linux32-${currentVersion}.zip`,
+                `build/dist/zip/linux64-${currentVersion}.zip`,
+                `build/dist/zip/osx64-${currentVersion}.zip`,
+                `build/dist/zip/win32-${currentVersion}.zip`,
+                `build/dist/zip/win64-${currentVersion}.zip`
+            ]
+        };
+        ghRelease(options, function (err, result) {
+            if (err) {
+                return done(err);
+            }
+            console.log(result)
+        })
+    } else {
+        return done(new Error('No auth token found.'));
+    }
 
-gulp.task('default', gulp.series('clean', 'init', 'clone-signal', 'checkout-signal-latest', 'build-signal', 'build-nw', 'build-release'));
+});
+
+
+gulp.task('default', gulp.series('clean', 'init', 'clone-signal', 'checkout-signal-latest', 'build-signal', 'build-nw', 'build-release', 'push-release'));
