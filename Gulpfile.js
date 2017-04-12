@@ -120,9 +120,11 @@ gulp.task('push-release', (done) => {
         };
         ghRelease(options, function (err, result) {
             if (err) {
-                return done(err);
+                console.warn(err);
+                return done();
             }
-            console.log(result)
+            console.log(result);
+            done();
         })
     } else {
         return done(new Error('No auth token found.'));
